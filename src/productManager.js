@@ -67,7 +67,10 @@ class ProductManager {
         return msg
     }
 
-    getProducts() {
+    getProducts(limit = 0) {
+        limit = Number(limit);
+        if(limit > 0)
+            return this.#products.slice(0,limit);
         return this.#products;
     }
 
