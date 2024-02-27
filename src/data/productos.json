@@ -1,1 +1,92 @@
-[{"id":1,"title":"Cosas de Cabrito","description":"El unipersonal de stand up que estabas buscando","price":2500,"thumbnail":"Imagen-Cosas-de-Cabrito","code":"abc123","stock":30},{"id":2,"title":"Desastre","description":"El unico show que cumple con el etiquetado frontal","price":3000,"thumbnail":"Imagen-Desastre","code":"abc456","stock":50},{"id":3,"title":"Excesos","description":"Sabemos que los excesos no estan bien, pero nos gustan","price":5000,"thumbnail":"Imagen-Excesos","code":"abc789","stock":60}]
+[
+    {
+        "id": 1,
+        "title": "Cosas de Cabrito",
+        "description": "El unipersonal de stand up que estabas buscando",
+        "price": 2500,
+        "thumbnail": "Imagen-Cosas-de-Cabrito",
+        "code": "abc123",
+        "stock": 30
+    },
+    {
+        "id": 2,
+        "title": "Desastre",
+        "description": "El unico show que cumple con el etiquetado frontal",
+        "price": 3000,
+        "thumbnail": "Imagen-Desastre",
+        "code": "abc456",
+        "stock": 50
+    },
+    {
+        "id": 3,
+        "title": "Excesos",
+        "description": "Sabemos que los excesos no estan bien, pero nos gustan",
+        "price": 5000,
+        "thumbnail": "Imagen-Excesos",
+        "code": "abc789",
+        "stock": 60
+    },
+    {
+        "id": 4,
+        "title": "Haciendo Stand Up",
+        "description": "Hacemos lo que nos hace feliz para hacerte reir",
+        "price": 4500,
+        "thumbnail": "Imagen-Haciendo",
+        "code": "abc001",
+        "stock": 56
+    },
+    {
+        "id": 5,
+        "title": "Stand Up Nigth",
+        "description": "Noches a pura risa con los mejores comediantes",
+        "price": 5000,
+        "thumbnail": "Imagen-StandUpNigth",
+        "code": "abc002",
+        "stock": 60
+    },
+    {
+        "id": 6,
+        "title": "Barrilete Comico",
+        "description": "Humor con ironia, venite o no vengas",
+        "price": 5000,
+        "thumbnail": "Imagen-Barrilete",
+        "code": "abc003",
+        "stock": 56
+    },
+    {
+        "id": 7,
+        "title": "Una para todos",
+        "description": "Una risa para todos, por que la risa es el otro",
+        "price": 4500,
+        "thumbnail": "Imagen-UPT",
+        "code": "abc004",
+        "stock": 56
+    },
+    {
+        "id": 8,
+        "title": "Carambola",
+        "description": "Un show impredecible, estadisticamente insuperable",
+        "price": 4000,
+        "thumbnail": "Imagen-Carambola",
+        "code": "abc006",
+        "stock": 100
+    },
+    {
+        "id": 9,
+        "title": "El kaputt",
+        "description": "El desafio de los comediantes, la desicion del publico",
+        "price": 2000,
+        "thumbnail": "Imagen-Kaputt",
+        "code": "abc007",
+        "stock": 47
+    },
+    {
+        "id": 10,
+        "title": "Otra Orbita",
+        "description": "Reirte te transporta, te cambia, te saca de la rutina, veni a viajar",
+        "price": 3500,
+        "thumbnail": "Imagen-OtraOrbita",
+        "code": "abc008",
+        "stock": 80
+    }
+]

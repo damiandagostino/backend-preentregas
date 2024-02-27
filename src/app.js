@@ -1,14 +1,14 @@
 import express from "express";
 import ProductManager from "./productManager.js";
 
+
 const app = express();
 const PORT = 8080;
 
-const productos = new ProductManager();
-
 app.get('/products',(req, res)=>{
     const {limit} = req.query;
-    return  res.json({ productos: productos.getProducts(limit) })
+    const p = new ProductManager();
+    return  res.json({ productos: p.getProducts(limit) })
 });
 
 app.get('/products/:pid', (req, res) => {

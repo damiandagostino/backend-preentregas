@@ -8,8 +8,8 @@ class ProductManager {
     static id = 0;
     // se declara el constructor del array de productos vacio
     constructor() {
-        this.#products = [];
-        this.#path = '../src/data/productos.json'
+        this.#path = './src/data/productos.json';
+        this.#products = this.#leerProductosInFile();
     }
 
     #asignarIdProducto(){
@@ -24,8 +24,8 @@ class ProductManager {
         try{
             if(fs.existsSync(this.#path))
                 return JSON.parse(fs.readFileSync(this.#path, 'utf-8'));
-            
-                return [];
+                let msg = "no se pudo leer";
+                return msg;
         }catch (error){
             console.log(`Ocurrio un error al leer el archivo de productos, ${error}`);
         }
@@ -51,6 +51,7 @@ class ProductManager {
                 return `El codigo ${code} esta repetido`;
             // ID progesivo automatico e incremental con cada producto agregado
             ProductManager.id = ProductManager.id +1;
+            const idProducto = ProductManager.id;
             const id = this.#asignarIdProducto();
 
         const newProduct = {
@@ -74,12 +75,12 @@ class ProductManager {
         return this.#products;
     }
 
-    productoExistente(id) {
-        return this.#products.find((producto) => producto.id === id);
-    }
-
     getProductById(id) {
-        !this.productoExistente(id) ? console.log('Not Found') : console.log(this.productoExistente(id));
+        const producto = this.#products.find((p) => p.id == id);
+        if(producto)
+            return producto;
+        else
+        return 'Not Found id producto'
     }
 
     updateProduct(id, objetUpDate){
