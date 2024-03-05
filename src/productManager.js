@@ -40,15 +40,17 @@ class ProductManager {
     }
 
     //funcion para añadir productos nuevos al array
-    addProduct(title, description, price, thumbnail, code, stock) {
-            let msg = "Producto agregado";
+    addProduct(title, description, price, thumbnails=[], code, stock, category, status = true) {
+            let msg = "Ocurrio un error";
             //validacion de que todos los atributos del array se encuentren con datos
-            if(!title || !description ||!price || !thumbnail || !code || !stock)
-            return 'Debe completarse todos los campos son obligarios, intente nuevamente';
+            if(!title || !description ||!price || !code || !stock || !category)
+            msg = 'Debe completarse todos los campos son obligarios, intente nuevamente';
+            else{
             //Validacion que el code no se repite en los nuevos productos.
             const codeRepetido = this.#products.some(p => p.code == code);
             if(codeRepetido)
-                return `El codigo ${code} esta repetido`;
+                msg = `El codigo ${code} esta repetido`;
+            else{
             // ID progesivo automatico e incremental con cada producto agregado
             ProductManager.id = ProductManager.id +1;
             const idProducto = ProductManager.id;
@@ -59,12 +61,21 @@ class ProductManager {
             title,
             description,
             price,
-            thumbnail,
+            thumbnails,
             code,
             stock,
+            category,
+            status
         }
         this.#products.push(newProduct);
         this.#guardarArchivo();
+        msg = {
+            msg:'Producto agregado exitosamente',
+            producto: newProduct
+        }
+    }
+    }
+
         return msg
     }
 
@@ -76,24 +87,37 @@ class ProductManager {
     }
 
     getProductById(id) {
+        let status = false;
+        let respuesta = `El producto con id ${id} no existe`
         const producto = this.#products.find((p) => p.id == id);
-        if(producto)
-            return producto;
-        else
-        return 'Not Found id producto'
+        if(producto){
+            status = true;
+            respuesta = producto
+        }
+        return {status, respuesta}
     }
 
     updateProduct(id, objetUpDate){
-        let msg = `El id ${id} no existe`;
+        let result = `El id ${id} no existe`;
 
         const index = this.#products.findIndex(p=> p.id === id);
         if (index !== -1){
             const{id, ...rest} = objetUpDate;
-            this.#products[index] = {...this.#products[index], ...rest};
+            const propiedadesPermitidas = ['title', 'description', 'price', 'thumbnails', 'code', 'stock', 'category', 'status'];
+            const propiedadesActualizadas = Object.keys(rest)
+            .filter(propiedad => propiedadesPermitidas.includes(propiedad))
+            .reduce((obj, key)=>{
+                obj[key] = rest[key];
+                return obj;
+            },{});
+            this.#products[index] = {...this.#products[index], ...propiedadesActualizadas};
             this.#guardarArchivo();
-            msg ='El archivo se actualizo con exito'
+            result ={
+                msg: 'El archivo se actualizo con exito',
+                producto: this.#products[index]
+            };
         }
-        return msg;
+        return result;
     }
 
     deleteProduct(id){

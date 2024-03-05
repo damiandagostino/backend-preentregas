@@ -1,21 +1,33 @@
 import express from "express";
-import ProductManager from "./productManager.js";
+import productsRouter from "./routers/products.router.js";
+import cartsRouter from "./routers/carts.router.js";
+import multer from "multer";   
 
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, `${__dirname}/../files`)
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname) 
+}});
+
+const uploader = multer({ storage })
 
 const app = express();
 const PORT = 8080;
 
-app.get('/products',(req, res)=>{
-    const {limit} = req.query;
-    const p = new ProductManager();
-    return  res.json({ productos: p.getProducts(limit) })
-});
+app.use(express.static(`../public`))
+app.use(express.json());
+app.use(express.urlencoded({extended: true }))
 
-app.get('/products/:pid', (req, res) => {
-    const {pid} = req.params;
-    const p = new ProductManager();
-    return res.json({producto: p.getProductById(Number(pid))});
-});
+app.get("/",(req,res)=>{
+    return req.send('Solucion Primera PreEntrega')
+})
+
+
+app.use('/api/products', productsRouter);
+app.use('/api/carts', cartsRouter);
+
 
 app.listen(PORT, ()=>{
     console.log(`Corriendo app en el puerto ${PORT}`);
