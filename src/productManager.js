@@ -40,7 +40,7 @@ class ProductManager {
     }
 
     //funcion para añadir productos nuevos al array
-    addProduct(title, description, price, thumbnails=[], code, stock, category, status = true) {
+    addProduct({title, description, price, thumbnail=[], code, stock, category, status = true}) {
             let msg = "Ocurrio un error";
             //validacion de que todos los atributos del array se encuentren con datos
             if(!title || !description ||!price || !code || !stock || !category)
@@ -61,7 +61,7 @@ class ProductManager {
             title,
             description,
             price,
-            thumbnails,
+            thumbnail,
             code,
             stock,
             category,
@@ -89,7 +89,7 @@ class ProductManager {
     getProductById(id) {
         let status = false;
         let respuesta = `El producto con id ${id} no existe`
-        const producto = this.#products.find((p) => p.id == id);
+        const producto = this.#products.find((p) => p.id === id);
         if(producto){
             status = true;
             respuesta = producto
@@ -103,7 +103,7 @@ class ProductManager {
         const index = this.#products.findIndex(p=> p.id === id);
         if (index !== -1){
             const{id, ...rest} = objetUpDate;
-            const propiedadesPermitidas = ['title', 'description', 'price', 'thumbnails', 'code', 'stock', 'category', 'status'];
+            const propiedadesPermitidas = ['title', 'description', 'price', 'thumbnail', 'code', 'stock', 'category', 'status'];
             const propiedadesActualizadas = Object.keys(rest)
             .filter(propiedad => propiedadesPermitidas.includes(propiedad))
             .reduce((obj, key)=>{
